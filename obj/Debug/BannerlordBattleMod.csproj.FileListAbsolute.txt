@@ -1,0 +1,7 @@
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerlordBattleMod\bin\Win64_Shipping_Client\BannerlordBattleMod.dll
+C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerlordBattleMod\bin\Win64_Shipping_Client\BannerlordBattleMod.pdb
+C:\Users\Utilizador 1\source\repos\BannerlordBattleMod\BannerlordBattleMod\obj\Debug\BannerlordBattleMod.csprojAssemblyReference.cache
+C:\Users\Utilizador 1\source\repos\BannerlordBattleMod\BannerlordBattleMod\obj\Debug\BannerlordBattleMod.csproj.CoreCompileInputs.cache
+C:\Users\Utilizador 1\source\repos\BannerlordBattleMod\BannerlordBattleMod\obj\Debug\BannerlordBattleMod.csproj.CopyComplete
+C:\Users\Utilizador 1\source\repos\BannerlordBattleMod\BannerlordBattleMod\obj\Debug\BannerlordBattleMod.dll
+C:\Users\Utilizador 1\source\repos\BannerlordBattleMod\BannerlordBattleMod\obj\Debug\BannerlordBattleMod.pdb

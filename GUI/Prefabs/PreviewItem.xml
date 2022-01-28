@@ -1,0 +1,23 @@
+<Window>
+	<EncyclopediaListItemWidget DoNotPassEventsToChildren="true" Command.Click="Execute" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="37" Brush="Encyclopedia.ListButton" IsHidden="@IsFiltered" ListItemId="@Id">
+		<Children>
+
+			<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight">
+				<Children>
+					<!--Star if bookmarked-->
+					<Widget IsVisible="@IsBookmarked" IsSelected="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Center" PositionYOffset="-4" Sprite="Encyclopedia\star_without_glow" Color="#FEC157FF" />
+
+					<!--Space if not bookmarked-->
+					<Widget IsHidden="@IsBookmarked" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+					<!--Name-->
+					<ScrollingTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" SuggestedWidth="500" MarginLeft="5" Brush="EncyclopediaList.Filter.Name.Text" Brush.FontSize="30" Brush.TextHorizontalAlignment="Left" Brush.TextVerticalAlignment="Center" Text="@Name"/>
+
+					<!--Compared Value-->
+					<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="30" Brush="EncyclopediaList.Filter.Name.Text" Brush.FontSize="30" Brush.TextHorizontalAlignment="Left" Brush.TextVerticalAlignment="Center" Text="@ComparedValue"/>
+				</Children>
+			</ListPanel>
+
+		</Children>
+	</EncyclopediaListItemWidget>
+</Window>

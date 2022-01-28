@@ -1,0 +1,65 @@
+<Prefab>
+	<Constants>
+		<Constant Name="Encyclopedia.Canvas.Width" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Width"/>
+		<Constant Name="Encyclopedia.Canvas.Height" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Height"/>
+
+		<Constant Name="Encyclopedia.Width" Value="!Encyclopedia.Canvas.Width" Additive="-35"/>
+		<Constant Name="Encyclopedia.Height" Value="!Encyclopedia.Canvas.Height" Additive="-198"/>
+
+	</Constants>
+	<Window>
+		<BrushWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" Brush="Encyclopedia.Page.SoundBrush">
+			<Children>
+
+				<Widget HeightSizePolicy ="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="!Encyclopedia.Height" SuggestedWidth="!Encyclopedia.Width" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="155" DoNotAcceptEvents="true">
+					<Children>
+
+						<Widget HeightSizePolicy ="StretchToParent"  WidthSizePolicy="Fixed" SuggestedWidth="5" Sprite="list_divider_9" MarginLeft="350"/>
+
+						<ListPanel DoNotAcceptEvents="true" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+							<Children>
+
+								<EncyclopediaListWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" LastSelectedItemId="@LastSelectedItemId" ItemList="ListPageScrollablePanel\ListPageRect\ItemsListPanel" ItemListScroll="ListPageScrollbar">
+									<Children>
+										<!--
+										<ScrollablePanel Id="ListPageScrollablePanel"  HeightSizePolicy ="StretchToParent" MarginTop="50" WidthSizePolicy="StretchToParent" InnerPanel="ListPageRect\ItemsListPanel" ClipRect="ListPageRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\ListPageScrollbar" AutoHideScrollBars="true" >
+											<Children>
+
+												<Widget Id="ListPageRect" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ClipContents="true">
+													<Children>
+
+														
+														<ListPanel DataSource="{Items}" Id="ItemsListPanel" StackLayout.LayoutMethod = "VerticalBottomToTop" WidthSizePolicy = "StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="5">
+															<ItemTemplate>
+																<EncyclopediaItemListItem/>
+															</ItemTemplate>
+														</ListPanel>
+
+													</Children>
+												</Widget>
+
+											</Children>
+										</ScrollablePanel>
+
+										<ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="ListPageScrollbar" SuggestedWidth="30" MinValue = "0" MaxValue = "100" MarginRight="10" MarginBottom="15" MarginTop="40" AlignmentAxis="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Handle = "ListPageScrollbarHandle" >
+											<Children>
+												<Widget Id="ListPageScrollbarBed" WidthSizePolicy = "Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment = "Center"  Sprite="SPGeneral\SPRecruitment\slider_thin_bed_vertical" />
+												<ImageWidget Id="ListPageScrollbarHandle" WidthSizePolicy = "Fixed" HeightSizePolicy="Fixed" MinHeight="153" SuggestedWidth="30" SuggestedHeight="150" HorizontalAlignment = "Center" Brush="Encyclopedia.Scroll.Handle.Vertical" />
+											</Children>
+										</ScrollbarWidget>
+											-->
+									</Children>
+								</EncyclopediaListWidget>
+
+							</Children>
+						</ListPanel>
+
+					</Children>
+				</Widget>
+
+				<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Sprite="Encyclopedia\sp_encyclopedia_screen2" AlphaFactor="0" IsEnabled="false"/>
+
+			</Children>
+		</BrushWidget>
+	</Window>
+</Prefab>
