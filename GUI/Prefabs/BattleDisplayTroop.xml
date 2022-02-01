@@ -1,0 +1,110 @@
+<Prefab>
+	<Variables>
+	</Variables>
+	<Constants>
+		<Constant Name="Tuple.Height.Additive" Value="0" />
+
+		<Constant Name="Toggle.Width" BrushLayer="Default" BrushName="Party.TroopTupple.Left" BrushValueType="Width" />
+		<Constant Name="Toggle.Height" Additive="!Tuple.Height.Additive" BrushLayer="Default" BrushName="Party.TroopTupple.Left" BrushValueType="Height" />
+		<Constant Name="Toggle.Pressed.Width" BrushLayer="PressedLayer" BrushName="Party.TroopTupple.Left" BrushValueType="Width" />
+
+		<Constant Name="Extension.Width" BrushLayer="Default" BrushName="Party.TroopTupple.Extension.Left" BrushValueType="Width" />
+		<Constant Name="Extension.Height" Additive="!Tuple.Height.Additive" BrushLayer="Default" BrushName="Party.TroopTupple.Extension.Left" BrushValueType="Height" />
+
+		<Constant Name="Extension.Hidden.MarginTop" Value="5" />
+		<Constant Name="Extension.Hidden.Height" Additive="!Tuple.Height.Additive" Value="58" />
+		<Constant Name="Extension.Selected.MarginTop" Value="58" />
+
+		<Constant Name="Extension.DropShadowOverlay.Height" SpriteName="PartyScreen\selected_button_extension_dropshadow_overlay" SpriteValueType="Height" />
+
+		<Constant Name="Party.TroopTuple.Extension.StockButton.Width" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.StockButton" BrushValueType="Width" />
+		<Constant Name="Party.TroopTuple.Extension.StockButton.Height" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.StockButton" BrushValueType="Height" />
+
+		<Constant Name="Party.Slot.Width" BrushLayer="Default" BrushName="Party.TalkSlot.Background" BrushValueType="Width" />
+		<Constant Name="Party.Slot.Height" BrushLayer="Default" BrushName="Party.TalkSlot.Background" BrushValueType="Height" />
+
+		<Constant Name="Button.Transfer.Width" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.TransferButton" BrushValueType="Width" />
+		<Constant Name="Button.Transfer.Height" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.TransferButton" BrushValueType="Height" />
+
+		<Constant Name="Button.TransferAll.Width" BrushLayer="Default" BrushName="ButtonLeftArrowBrush1" BrushValueType="Width" />
+		<Constant Name="Button.TransferAll.Height" BrushLayer="Default" BrushName="ButtonLeftArrowBrush1" BrushValueType="Width" />
+
+		<Constant Name="Image.Width" Value="130" />
+		<Constant Name="Image.Height" Additive="!Tuple.Height.Additive" Value="63" />
+		<Constant Name="Image.MarginLeft" Value="10" />
+		<Constant Name="Image.MarginTop" Value="0" />
+		<Constant Name="Image.Padding" Value="2" />
+
+		<Constant Name="NameLeft" Value="145" />
+
+		<Constant Name="IconAlpha" Value="0.7" />
+	</Constants>
+	<VisualDefinitions>
+		<VisualDefinition Name="Container" TransitionDuration="0.075">
+			<VisualState SuggestedWidth="!Toggle.Width" State="Default" />
+			<VisualState SuggestedWidth="!Toggle.Pressed.Width" State="Pressed" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Selected" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Hovered" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Disabled" />
+		</VisualDefinition>
+		<VisualDefinition Name="Extension" TransitionDuration="0.15">
+			<VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Default" />
+			<VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Pressed" />
+			<VisualState SuggestedHeight="!Extension.Height" MarginTop="!Extension.Selected.MarginTop" State="Selected" />
+			<VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Hovered" />
+			<VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Disabled" />
+		</VisualDefinition>
+		<VisualDefinition Name="Main" TransitionDuration="0.075">
+			<VisualState SuggestedWidth="!Toggle.Width" State="Default" />
+			<VisualState SuggestedWidth="!Toggle.Pressed.Width" State="Pressed" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Selected" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Hovered" />
+			<VisualState SuggestedWidth="!Toggle.Width" State="Disabled" />
+		</VisualDefinition>
+	</VisualDefinitions>
+	<Window>
+		<PartyTroopTupleWidget Id="PartyTroopTuple" VisualDefinition="Container" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!Toggle.Width" HorizontalAlignment="Center" MarginTop="2" Brush="Party.TroopTuple.SoundBrush" CharacterID="@TroopID" Command.AlternateClick="ExecuteOpenTroopEncyclopedia" Command.Click="ExecuteSetSelected"  Extension="Extension" IsPrisoner="false" IsTransferable="false" IsTupleLeftSide="true" Main="Main">
+			<Children>
+				<BrushWidget Id="Main" VisualDefinition="Main" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Toggle.Width" SuggestedHeight="!Toggle.Height" Brush="Party.TroopTupple.Left">
+					<Children>
+
+						<BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Image.Width" SuggestedHeight="!Image.Height" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="!Image.MarginLeft" MarginTop="!Image.MarginTop" Brush="Party.TroopBack">
+							<Children>
+								<ImageIdentifierWidget DataSource="{Code}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="!Image.Padding" MarginRight="!Image.Padding" MarginTop="!Image.Padding" MarginBottom="!Image.Padding" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsBig="true" LoadingIconWidget="LoadingIconWidget">
+									<Children>
+										<Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
+									</Children>
+								</ImageIdentifierWidget>
+
+
+							</Children>
+						</BrushWidget>
+
+						<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="61" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="60" Brush="Party.Text.Tuple" Brush.TextHorizontalAlignment="Center" IsDisabled="true" IsHidden="@IsHero" Text="@TroopNum" />
+
+						<TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="420" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="!NameLeft" Brush="Party.Text.Tuple" Brush.TextHorizontalAlignment="Left" IsDisabled="true" Text="@Name" />
+
+						<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="126" SuggestedHeight="42" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="42" Sprite="PartyScreen\health_bar" IsDisabled="true" IsVisible="@IsHero">
+							<Children>
+								<PartyHealthFillBarWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="11" MarginRight="5" MarginTop="11" MarginBottom="11" Brush="Party.TroopTupple.HealthBarFill" DoNotUseCustomScale="true" Health="@HeroHealth" HealthText="HealthText" IsWounded="@IsHeroWounded" MaxAmount="100">
+									<Children>
+										<TextWidget Id="HealthText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" PositionYOffset="1" Brush="Party.TroopTupple.HealthBarText" Brush.FontSize="16" />
+									</Children>
+								</PartyHealthFillBarWidget>
+							</Children>
+						</Widget>
+					</Children>
+				</BrushWidget>
+
+				
+				<!--
+				<Widget Id="DragWidget" DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Image.Width" SuggestedHeight="!Image.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Sprite="PartyScreen\portrait" IsDisabled="true" IsVisible="false">
+					<Children>
+						<ImageIdentifierWidget DataSource="{Code}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="!Image.Padding" MarginRight="!Image.Padding" MarginTop="!Image.Padding" MarginBottom="!Image.Padding" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsBig="true" />
+					</Children>
+				</Widget>
+				-->
+			</Children>
+		</PartyTroopTupleWidget>		
+	</Window>
+</Prefab>

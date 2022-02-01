@@ -1,0 +1,112 @@
+<Prefab>
+	<Constants>
+		<Constant Name="Encyclopedia.Canvas.Width" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Width"/>
+		<Constant Name="Encyclopedia.Canvas.Height" BrushName="Encyclopedia.Canvas" BrushLayer="Default" BrushValueType="Height"/>
+
+		<Constant Name="Encyclopedia.Width" Value="!Encyclopedia.Canvas.Width" Additive="-35"/>
+		<Constant Name="Encyclopedia.Height" Value="!Encyclopedia.Canvas.Height" Additive="-198"/>
+
+	</Constants>
+	<Window>
+		<Widget Id="ClanMembersWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="true">
+			<Children>
+				<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight"  DoNotAcceptEvents="true"  >
+					<Children>
+
+						<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  IsVisible="true">
+							<Children>
+								<Widget DataSource="{CurrentSelectedMember}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+									<Children>
+
+										<!--Lord Visual Model-->
+										<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="350" SuggestedHeight="400">
+											<Children>
+												<!--Selected Character Tableau-->
+												<CharacterTableauWidget DataSource="{HeroModel}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="600" SuggestedHeight="850" VerticalAlignment="Bottom" PositionXOffset="-150" PositionYOffset="20" BannerCodeText="@BannerCodeText" BodyProperties="@BodyProperties" CharStringId="@CharStringId" ClipContents="false" EquipmentCode="@EquipmentCode" IsFemale="@IsFemale" MountCreationKey="@MountCreationKey" StanceIndex="@StanceIndex" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" DoNotUseCustomScale="true"/>
+												<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="123" VerticalAlignment="Bottom" PositionYOffset="20" Sprite="Clan\clan_portrait_shadow" IsEnabled="false" />
+											</Children>
+										</Widget>
+
+										<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="350"  MarginTop="35">
+											<Children>
+												<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" StackLayout.LayoutMethod="VerticalBottomToTop">
+													<Children>
+
+												
+														<!--Divider Between Traits and Skills-->
+														<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" PositionXOffset="-3" Sprite="Clan\divider_mid" MarginTop="25"/>
+
+														<!--Skills Header-->
+														<TextWidget DataSource="{..}" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" Text="@SkillsText" Brush="Kingdom.TitleSmall.Text" MarginTop="15"/>
+
+														<!--Skills List-->
+														<GridWidget Id="SkillGrid" DataSource="{Skills}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="20" DefaultCellWidth="70" DefaultCellHeight="90" ColumnCount="9">
+															<ItemTemplate>
+																<SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="44" SuggestedHeight="44" SkillId="@SkillId" MarginBottom="20" UseSmallVariation="true" MarginLeft="5">
+																	<Children>
+																		<TextWidget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="20" IntText="@SkillValue" VerticalAlignment="Bottom" Brush="Encyclopedia.Skill.Text" Brush.FontSize="20" Brush.FontColor="#F4E1C4FF" PositionYOffset="25"/>
+																		<HintWidget DataSource="{Hint}" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+																	</Children>
+																</SkillIconVisualWidget>
+															</ItemTemplate>
+														</GridWidget>
+
+														<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" PositionXOffset="-3" Sprite="Clan\divider_mid"/>
+
+														
+
+													</Children>
+												</ListPanel>
+											</Children>
+										</Widget>
+
+
+
+
+									</Children>
+								</Widget>
+							</Children>
+						</Widget>
+						<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  IsVisible="true"  DoNotAcceptEvents="true">
+							<Children>
+
+								<EncyclopediaListWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" LastSelectedItemId="@LastSelectedItemId" ItemList="ListPageScrollablePanel\ListPageRect\ItemsListPanel" ItemListScroll="ListPageScrollbar">
+									<Children>
+
+										<ScrollablePanel Id="ListPageScrollablePanel"  HeightSizePolicy ="StretchToParent" MarginTop="50" WidthSizePolicy="StretchToParent" InnerPanel="ListPageRect\ItemsListPanel" ClipRect="ListPageRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\ListPageScrollbar" AutoHideScrollBars="true" >
+											<Children>
+
+												<Widget Id="ListPageRect" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ClipContents="true">
+													<Children>
+
+														<!--List Item Panel-->
+														<ListPanel DataSource="{PreviewItems}" Id="ItemsListPanel" StackLayout.LayoutMethod = "VerticalBottomToTop" WidthSizePolicy = "StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="5">
+															<ItemTemplate>
+																<PreviewItem/>
+															</ItemTemplate>
+														</ListPanel>
+
+													</Children>
+												</Widget>
+
+											</Children>
+										</ScrollablePanel>
+
+										<ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="Fixed" Id="ListPageScrollbar" SuggestedWidth="30" MinValue = "0" MaxValue = "100" MarginRight="10" MarginBottom="15" MarginTop="40" AlignmentAxis="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Handle = "ListPageScrollbarHandle" >
+											<Children>
+												<Widget Id="ListPageScrollbarBed" WidthSizePolicy = "Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment = "Center"  Sprite="SPGeneral\SPRecruitment\slider_thin_bed_vertical" />
+												<ImageWidget Id="ListPageScrollbarHandle" WidthSizePolicy = "Fixed" HeightSizePolicy="Fixed" MinHeight="153" SuggestedWidth="30" SuggestedHeight="150" HorizontalAlignment = "Center" Brush="Encyclopedia.Scroll.Handle.Vertical" />
+											</Children>
+										</ScrollbarWidget>
+
+									</Children>
+								</EncyclopediaListWidget>
+
+							</Children>
+						</Widget>
+					</Children>
+				</ListPanel>
+			</Children>
+		</Widget>
+	</Window>
+</Prefab>

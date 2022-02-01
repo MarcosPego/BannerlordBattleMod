@@ -53,17 +53,19 @@ namespace BannerlordBattleMod
 			SpriteData spriteData = UIResourceManager.SpriteData;
 			TwoDimensionEngineResourceContext resourceContext = UIResourceManager.ResourceContext;
 			ResourceDepot uiresourceDepot = UIResourceManager.UIResourceDepot;
-			/*this._clanCategory = spriteData.SpriteCategories["ui_clan"];
+
+			this._clanCategory = spriteData.SpriteCategories["ui_clan"];
 			this._clanCategory.Load(resourceContext, uiresourceDepot);
+
 			this._partyscreenCategory = spriteData.SpriteCategories["ui_partyscreen"];
-			this._partyscreenCategory.Load(resourceContext, uiresourceDepot);*/
+			this._partyscreenCategory.Load(resourceContext, uiresourceDepot);
+
+			this._iventoryCategory = spriteData.SpriteCategories["ui_inventory"];
+			this._iventoryCategory.Load(resourceContext, uiresourceDepot);
 
 			this._encyclopediaCategory = spriteData.SpriteCategories["ui_encyclopedia"];
-
-
-
-
 			this._encyclopediaCategory.Load(resourceContext, uiresourceDepot); 
+
 			 ScreenManager.TrySetFocus(_gauntletLayer);
 			LoadingWindow.DisableGlobalLoadingWindow();
 		}
@@ -78,7 +80,9 @@ namespace BannerlordBattleMod
 		protected override void OnFinalize()
 		{
 			base.OnFinalize();
-			//this._clanCategory.Unload();
+			this._iventoryCategory.Unload();
+			this._partyscreenCategory.Unload();
+			this._clanCategory.Unload();
 			this._encyclopediaCategory.Unload();
 			base.RemoveLayer(this._gauntletLayer);
 			this._gauntletLayer = null;
@@ -90,6 +94,7 @@ namespace BannerlordBattleMod
 		//private PartyManagerLogic _partyManagerLogic;
 		private SpriteCategory _partyscreenCategory;
 		private SpriteCategory _clanCategory;
+		private SpriteCategory _iventoryCategory;
 		private SpriteCategory _encyclopediaCategory;
 
 		private MapNavigationHandler _mapNavigationHandler;

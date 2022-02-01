@@ -53,13 +53,29 @@ namespace BannerlordBattleMod
 			_previewOverviewViewModel.ClearSelected();
 			_isSelected = true;
 			//InformationManager.DisplayMessage(new InformationMessage( " id not found."));
-			_previewOverviewViewModel.currentSelectedHero = _itemHero;
+			_previewOverviewViewModel._currentSelectedHero = _itemHero;
+			_previewOverviewViewModel.CharacterName = _previewOverviewViewModel._currentSelectedHero.Name.ToString();
 			IsHighlighted = true;
 			//NameSelectionBrush = HighlightBrush;
 			_previewOverviewViewModel.RefreshValues();
 
 			RefreshValues();
 		}
+
+		public void MakeNormalAutoScroll()
+        {
+			_previewOverviewViewModel.ClearSelected();
+			_isSelected = true;
+			//InformationManager.DisplayMessage(new InformationMessage( " id not found."));
+			_previewOverviewViewModel._currentSelectedHero = _itemHero;
+			_previewOverviewViewModel.CharacterName = _previewOverviewViewModel._currentSelectedHero.Name.ToString();
+			IsHighlighted = true;
+			//NameSelectionBrush = HighlightBrush;
+			_previewOverviewViewModel.RefreshValues();
+
+			RefreshValues();
+		}
+
 
 		[DataSourceProperty]
 		public bool IsBookmarked

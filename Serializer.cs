@@ -26,10 +26,10 @@ namespace BannerlordBattleMod
 
 		private static List<CustomBattleSceneData> _customBattleScenes;
 
-		public static void ParseCustomBattleScenes()
+		public static void ParseCustomBattleScenes(bool is_custom_map = true)
         {
 			_customBattleScenes = new List<CustomBattleSceneData>();
-			XmlDocument customBattleSceneXML = LoadCustomBattleSceneXML();
+			XmlDocument customBattleSceneXML = LoadCustomBattleSceneXML(is_custom_map);
             bool flag = customBattleSceneXML.ChildNodes[0].Name.ToLower().Equals("xml");
             XmlNode xmlNode = flag ? customBattleSceneXML.ChildNodes[1] : customBattleSceneXML.ChildNodes[0];
             if (xmlNode.Name == "CustomBattleScenes")
@@ -111,9 +111,9 @@ namespace BannerlordBattleMod
         }
 
 
-        public static XmlDocument LoadCustomBattleSceneXML()
+        public static XmlDocument LoadCustomBattleSceneXML(bool is_custom_map = true)
         {
-            var filePath = Path.Combine(SaveFolderPath(), "custom_battle_scenes.xml");
+            var filePath = Path.Combine(SaveFolderPath(is_custom_map), "custom_battle_scenes.xml");
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
             return doc;
@@ -126,13 +126,26 @@ namespace BannerlordBattleMod
         {
             Directory.CreateDirectory(SaveFolderPath());
         }
-        public static string SaveFolderPath()
+        public static string SaveFolderPath(bool is_custom_map = true)
         {
-            string path = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..", ".."));
 
-            var filePath = Path.Combine(path, "ModuleData");
+            if (is_custom_map)
+            {
+				string path = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..", ".."));
 
-            return filePath;
+				var filePath = Path.Combine(path, "ModuleData");
+
+				return filePath;
+			}
+			else
+            {
+				string path = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..", "..", "..", "CustomBattle"));
+
+				var filePath = Path.Combine(path, "ModuleData");
+
+				return filePath;
+			}
+
         }
     }
 }

@@ -30,10 +30,22 @@ namespace BannerlordBattleMod
 
 
                     BattleHelper.HandlePostBattle();
+                    ScreenManager.PopScreen();
+                    _previewScreen._viewModel.RefreshValues();
+                    _previewScreen._viewModel._previewOverview.RefreshTimerCallbaks();
                 }
                 //InformationManager.DisplayMessage(new InformationMessage(PlayerEncounter.Current.EncounterState.ToString()));
             }
 
+            //if (ScreenManager.TopScreen is PreviewScreen) { TimerHandler.TickForTimePreview(_previewScreen._viewModel); }
+            if (ScreenManager.TopScreen is BattleDisplayScreen) {
+
+                if (TimerHandler.CurrentBattleDisplayViewModel != null)
+                {
+
+                    TimerHandler.CurrentBattleDisplayViewModel.ShouldStartBattle();
+                }
+            }
 
             if (Mission.Current == null )
             {
@@ -45,32 +57,7 @@ namespace BannerlordBattleMod
                 {
                     if (Input.IsKeyReleased(InputKey.T))
                     {
-                        //Hero.MainHero.MakeWounded();
-                        //PartyBase.MainParty.LeaderHero.MakeWounded
-                        //InformationManager.DisplayMessage(new InformationMessage("Hi whassup"));
-
-                        TroopRoster troopRoster = RosterHelper.GetHeroesTroopRoster();
-
-                        TroopRoster leftTroopRoster = new TroopRoster(PartyBase.MainParty);
-                        TroopRoster rightTroopRoster = new TroopRoster(PartyBase.MainParty);
-
-
-                        for (int i = 1; i < 9; i++)
-                        {
-                            troopRoster.GetCharacterAtIndex(i).HeroObject.HitPoints = troopRoster.GetCharacterAtIndex(i).MaxHitPoints();
-                            RosterHelper.TryAddCharacterObjectToRoster(MobileParty.MainParty.MemberRoster, troopRoster.GetCharacterAtIndex(i), 1);
-                        }
-
-                        for (int i = 9; i < 17; i++)
-                        {
-                            troopRoster.GetCharacterAtIndex(i).HeroObject.HitPoints = troopRoster.GetCharacterAtIndex(i).MaxHitPoints();
-                            RosterHelper.TryAddCharacterObjectToRoster(rightTroopRoster, troopRoster.GetCharacterAtIndex(i), 1);
-                        }
-
-
-                        //PartySpawnHelper.SpawnTwoPartiesFromRoster(leftTroopRoster, rightTroopRoster, PartyBase.MainParty.Position2D, PartyBase.MainParty.Position2D);
-                        PartySpawnHelper.SpawnPartyFromRoster(rightTroopRoster, PartyBase.MainParty.Position2D);
-                        //RosterHelper.OpenGarrisonRoster(leftTroopRoster, rightTroopRoster);
+                        if (ScreenManager.TopScreen is PreviewScreen) { _previewScreen._viewModel.AdvanceScreen(); }
                     }
                     if (Input.IsKeyReleased(InputKey.Y))
                     {
@@ -82,31 +69,7 @@ namespace BannerlordBattleMod
 
 
                         ScreenManager.PushScreen(_previewScreen);
-                    }
-                    if (Input.IsKeyReleased(InputKey.G))
-                    {
-                        TroopRoster troopRoster = RosterHelper.GetHeroesTroopRoster();
-
-                        TroopRoster leftTroopRoster = new TroopRoster(PartyBase.MainParty);
-                        TroopRoster rightTroopRoster = new TroopRoster(PartyBase.MainParty);
-
-
-                        for (int i = 1; i < 9; i++)
-                        {
-                            RosterHelper.TryAddCharacterObjectToRoster(MobileParty.MainParty.MemberRoster, troopRoster.GetCharacterAtIndex(i), 1);
-                        }
-
-                        for (int i = 9; i < 17; i++)
-                        {
-                            RosterHelper.TryAddCharacterObjectToRoster(rightTroopRoster, troopRoster.GetCharacterAtIndex(i), 1);
-                        }
-
-
-                        BattleDisplayScreen battleDisplayScreen = new BattleDisplayScreen(MobileParty.MainParty.MemberRoster, rightTroopRoster);
-
-
-                        ScreenManager.PushScreen(battleDisplayScreen);
-                    }
+                    } 
 
                 }
                

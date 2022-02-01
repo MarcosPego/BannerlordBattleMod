@@ -12,11 +12,15 @@ namespace BannerlordBattleMod
 {
     public class PartySpawnHelper
     {
-        public static void SpawnPartyFromRoster(TroopRoster roster, Vec2 pos, bool enterSettlement = true)
+        public static void SpawnPartyFromRoster(TroopRoster roster, Vec2 pos, string scene, bool enterSettlement = true)
         {
-            var randomSettlement = SettlementHelper.FindNearestSettlementToPoint(MobileParty.MainParty.Position2D);
+            if (enterSettlement)
+            {
+                var randomSettlement = SettlementHelper.FindNearestSettlementToPoint(MobileParty.MainParty.Position2D);
 
-            EnterSettlementAction.ApplyForParty(MobileParty.MainParty, randomSettlement);
+                EnterSettlementAction.ApplyForParty(MobileParty.MainParty, randomSettlement);
+            }
+
 
             TroopRoster emptyRoster = new TroopRoster(PartyBase.MainParty);
 
@@ -24,6 +28,9 @@ namespace BannerlordBattleMod
             BattleHelper.CurrentOpponentParty = MobilePartyHelper.SpawnLordParty(roster.GetCharacterAtIndex(0).HeroObject, pos, 2);
             //MobileParty rightParty = MobilePartyHelper.SpawnLordParty(rightRoster.GetCharacterAtIndex(0).HeroObject, pos2, 2);
             BattleHelper.CurrentOpponentParty.InitializeMobilePartyAtPosition(roster, emptyRoster, BattleHelper.CurrentOpponentParty.Position2D);
+
+            BattleHelper.CurrentOpponentParty.MemberRoster.RemoveIf((TroopRosterElement t) => !t.Character.IsHero);
+
             //rightParty.InitializeMobilePartyAtPosition(rightRoster, emptyRoster, rightParty.Position2D);
 
             PlayerEncounter.Start();
@@ -32,7 +39,7 @@ namespace BannerlordBattleMod
             PlayerEncounter.StartBattle();
             MapPatchData mapPatchAtPosition = Campaign.Current.MapSceneWrapper.GetMapPatchAtPosition(MobileParty.MainParty.Position2D);
             string battleSceneForMapPatch = PlayerEncounter.GetBattleSceneForMapPatch(mapPatchAtPosition);
-            BattleMissionManager.OpenBattleMission("river_battle_1");
+            BattleMissionManager.OpenBattleMission(scene);
         }
 
 

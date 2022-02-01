@@ -18,8 +18,9 @@ namespace BannerlordBattleMod
     class BattleDisplayScreen : ScreenBase, IGameStateListener
     {
 
-		public BattleDisplayScreen(TroopRoster leftSide, TroopRoster rightSide)
+		public BattleDisplayScreen(PreviewViewModel previewViewModel, TroopRoster leftSide, TroopRoster rightSide)
 		{
+			_previewViewModel = previewViewModel;
 			_leftSide = leftSide;
 			_rightSide = rightSide;
 		}
@@ -27,12 +28,12 @@ namespace BannerlordBattleMod
 		protected override void OnInitialize()
 		{
 			base.OnInitialize();
-			this._viewModel = new BattleDisplayViewModel(_leftSide, _rightSide);
+			this._viewModel = new BattleDisplayViewModel(_previewViewModel, _leftSide, _rightSide);
+			TimerHandler.CurrentBattleDisplayViewModel = this._viewModel;
 
-
-			this._viewModel.SetStartInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Start"));
-			this._viewModel.SetCancelInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Exit"));
-			this._viewModel.SetRandomizeInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Randomize"));
+			//this._viewModel.SetStartInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Start"));
+			//this._viewModel.SetCancelInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Exit"));
+			//this._viewModel.SetRandomizeInputKey(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").RegisteredHotKeys.FirstOrDefault((HotKey g) => ((g != null) ? g.Id : null) == "Randomize"));
 
 			this._gauntletLayer = new GauntletLayer(1, "GauntletLayer");
 			this._gauntletLayer.LoadMovie("BattleDisplay", this._viewModel);
@@ -88,12 +89,22 @@ namespace BannerlordBattleMod
 		protected override void OnFinalize()
 		{
 			base.OnFinalize();
-			this._clanCategory.Unload();
+
 			this._partyscreenCategory.Unload();
+			this._clanCategory.Unload();
 			this._encyclopediaCategory.Unload();
-			base.RemoveLayer(this._gauntletLayer);
+            try
+			{
+				base.RemoveLayer(this._gauntletLayer);
+			}
+            catch
+            {
+
+            }
+
 			this._gauntletLayer = null;
 			this._viewModel = null;
+			TimerHandler.CurrentBattleDisplayViewModel = null;
 		}
 
 		private GauntletLayer _gauntletLayer;
@@ -107,5 +118,7 @@ namespace BannerlordBattleMod
 
 		private TroopRoster _leftSide;
 		private TroopRoster _rightSide;
+
+		private PreviewViewModel _previewViewModel;
 	}
 }

@@ -28,6 +28,7 @@ namespace BannerlordBattleMod
         {
             if (MobileParty.MainParty.CurrentSettlement != null) LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
             PlayerEncounter.Finish(false);
+            HandleHeroesAfterBattleHealth();
             RemoveOpponentParty();
             RemoveAllExtraElements();
             HandleAfterBattleHealth();
@@ -50,6 +51,21 @@ namespace BannerlordBattleMod
            
         }
 
+        public static void HandleHeroesAfterBattleHealth()
+        {
+
+            foreach (var element in PartyBase.MainParty.MemberRoster.GetTroopRoster())
+            {
+                element.Character.HeroObject.HitPoints = element.Character.MaxHitPoints();
+            }
+
+            foreach (var element in CurrentOpponentParty.MemberRoster.GetTroopRoster())
+            {
+                element.Character.HeroObject.HitPoints = element.Character.MaxHitPoints();
+            }
+
+
+        }
 
 
         public static void RemoveAllExtraElements()

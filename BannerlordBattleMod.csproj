@@ -76,7 +76,12 @@
     <Compile Include="BattleHelper.cs" />
     <Compile Include="BattleMissionManager.cs" />
     <Compile Include="CharacterVM.cs" />
+    <Compile Include="DisplayItemMenuVM.cs" />
+    <Compile Include="ExtentionsHelper.cs" />
     <Compile Include="HarmonyOverrides\MissionOverride.cs" />
+    <Compile Include="DisplayItemVM.cs" />
+    <Compile Include="HarmonyOverrides\ScoreBoardOverride.cs" />
+    <Compile Include="HarmonyOverrides\ViewDataTrackerOverride.cs" />
     <Compile Include="MainManager.cs" />
     <Compile Include="MainManagerScreen.cs" />
     <Compile Include="MainManagerViewModel.cs" />
@@ -92,6 +97,7 @@
     <Compile Include="Serializer.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimerHandler.cs" />
     <Compile Include="VariablesHelper.cs" />
     <Content Include="Readme.txt" />
     <Content Include="SubModule.xml" />
